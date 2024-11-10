@@ -1,0 +1,1490 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "questions": [
+        {
+          "number": "a",
+          "question": "How old are you?",
+          "options": [],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [
+            10, 11, 12, 13, 14, 15, 16, 17, 41, 42, 43, 44, 45, 46, 47, 48, 49,
+            50, 51, 51, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66,
+            67, 68, 69, 70, 71, 72, 73, 74, 75
+          ],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": [
+            18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34,
+            35, 36, 37, 38, 39, 40
+          ],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "number",
+          "inputType": "number",
+          "dateFormat": "years",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Biodata",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 2,
+      "questions": [
+        {
+          "number": "a",
+          "question": "What is your marital status?",
+          "options": ["Single", "Married", "Divorced", "Widowed"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["Single", "Widowed"],
+          "mediumRiskResponse": ["Divorced"],
+          "lowRiskResponse": ["Married"],
+          "canBreakExecution": true,
+          "breakWhenRiskIs": ["low", "medium"],
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false
+        },
+        {
+          "number": "b",
+          "question": "If the need arises, do you have someone that can take you to the hospital?",
+          "options": ["Yes", "No"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["No"],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": ["Yes"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "inputType": "boolean",
+          "responseType": "string",
+          "risk": "",
+          "shouldSkip": false,
+          "hideConditions": {
+            "2_a": ["Divorced", "Married"]
+          }
+        }
+      ],
+      "active": true,
+      "category": "Biodata",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 3,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Is this your first pregnancy?",
+          "options": ["Yes", "No"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["No"],
+          "mediumRiskResponse": ["Yes"],
+          "lowRiskResponse": [],
+          "canBreakExecution": true,
+          "breakWhenRiskIs": ["medium"],
+          "inputType": "boolean",
+          "responseType": "string",
+          "risk": "",
+          "shouldSkip": false
+        },
+        {
+          "number": "b",
+          "question": "How many times have you carried a pregnancy till 6 months or delivery?",
+          "options": [0, 10],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [5, 6, 7, 8, 9, 10],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": [0, 1, 2, 3, 4],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "number",
+          "inputType": "number",
+          "risk": "",
+          "shouldSkip": false,
+          "hideConditions": {
+            "3_a": ["Yes"]
+          }
+        }
+      ],
+      "active": true,
+      "category": "Obstetric History (part 1)",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 4,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Do you know the first day of your last menstrual period?",
+          "options": ["Yes", "No"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [],
+          "mediumRiskResponse": ["No"],
+          "lowRiskResponse": ["Yes"],
+          "canBreakExecution": true,
+          "breakWhenRiskIs": ["low"],
+          "responseType": "string",
+          "inputType": "boolean",
+          "risk": "",
+          "shouldSkip": false
+        },
+        {
+          "number": "b",
+          "question": "If yes, provide date:",
+          "options": [],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": [],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "string",
+          "inputType": "date",
+          "dateFormat": "months",
+          "risk": "",
+          "shouldSkip": true,
+          "hideConditions": {
+            "4_a": ["No"]
+          }
+        },
+        {
+          "number": "c",
+          "question": "Have you done a scan for this pregnancy (ultrasound scan)?",
+          "options": ["Yes", "No"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [],
+          "mediumRiskResponse": ["No"],
+          "lowRiskResponse": ["Yes"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "string",
+          "inputType": "boolean",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Obstetric History (part 1)",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 5,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Are you carrying one baby, twins or more?",
+          "options": ["One baby", "More than one baby"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["More than one baby"],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": ["One baby"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "hideConditions": {
+        "4_c": ["No"]
+      },
+      "active": true,
+      "category": "Obstetric History (part 1)",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 6,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Have you had any miscarriage, baby that was born dead or died within 28 days of delivery? Select all that apply",
+          "options": [
+            "Miscarriage",
+            "Baby that was born dead",
+            "Baby that died within 28 days of delivery",
+            "None of the above"
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [
+            "Miscarriage",
+            "Baby that was born dead",
+            "Baby that died within 28 days of delivery"
+          ],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": ["None of the above"],
+          "canBreakExecution": true,
+          "breakWhenRiskIs": ["low"],
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false
+        },
+        {
+          "number": "b",
+          "question": "If yes, how many miscarriages",
+          "options": [1, 10],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [2, 3, 4, 5, 6, 7, 8, 9, 10],
+          "mediumRiskResponse": [1],
+          "lowRiskResponse": [],
+          "canBreakExecution": true,
+          "breakWhenRiskIs": ["medium"],
+          "responseType": "number",
+          "inputType": "number",
+          "risk": "",
+          "shouldSkip": false,
+          "hideConditions": {
+            "6_a": [
+              "Baby that was born dead",
+              "Baby that died within 28 days of delivery",
+              "None of the above"
+            ]
+          }
+        },
+        {
+          "number": "c",
+          "question": "If more than one miscarriage, did you have any baby in between?",
+          "options": ["Yes", "No"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["No"],
+          "mediumRiskResponse": ["Yes"],
+          "lowRiskResponse": [],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "string",
+          "inputType": "boolean",
+          "risk": "",
+          "shouldSkip": false,
+          "hideConditions": {
+            "6_b": [1]
+          }
+        }
+      ],
+      "hideConditions": {
+        "3_a": ["Yes"]
+      },
+      "active": true,
+      "category": "Obstetric History (part 1)",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 7,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Did your last pregnancy reach up to 8 months before delivery?",
+          "options": ["Yes", "No"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["No"],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": ["Yes"],
+          "canBreakExecution": true,
+          "breakWhenRiskIs": [],
+          "responseType": "string",
+          "inputType": "boolean",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "hideConditions": {
+        "3_a": ["Yes"]
+      },
+      "active": true,
+      "category": "Obstetric History (part 1)",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 8,
+      "questions": [
+        {
+          "number": "a",
+          "question": "How did you deliver during your previous pregnancies?",
+          "options": [
+            {
+              "type": "checkBox",
+              "text": "Normal delivery (vaginal delivery)"
+            },
+            {
+              "type": "checkBox",
+              "text": "C.S. or operation (Cesarean section)"
+            },
+            {
+              "type": "checkBox",
+              "text": "Delivery assisted with a device  (Instrumental delivery)"
+            },
+            {
+              "type": "checkBox",
+              "text": "Baby was delivered feet or buttocks first instead of head first"
+            },
+            {
+              "type": "checkBox",
+              "text": "Baby's head was delivered but the body was stuck"
+            },
+            { "type": "radio", "text": "No previous deliveries" },
+            {
+              "type": "radio",
+              "text": "Labor didn't start on its own (induction of labor)"
+            },
+            { "type": "radio", "text": "None of the above" }
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [
+            "C.S. or operation (Cesarean section)",
+            "Delivery assisted with a device  (Instrumental delivery)",
+            "Baby was delivered feet or buttocks first instead of head first",
+            "Baby's head was delivered but the body was stuck"
+          ],
+          "mediumRiskResponse": [
+            "Labor didn't start on its own (induction of labor)"
+          ],
+          "lowRiskResponse": [
+            "Normal delivery (vaginal delivery)",
+            "No previous deliveries"
+          ],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "arrayOfStrings",
+          "inputType": "multi",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "hideConditions": {
+        "3_a": ["Yes"]
+      },
+      "active": true,
+      "category": "Obstetric History (part 1)",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 9,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Did you have any of the following during your last pregnancy, delivery, or after your last delivery?",
+          "options": [
+            {
+              "type": "checkBox",
+              "text": "Bleeding causing dizziness,weakness, loss of consciousness, or requiring blood transfusion"
+            },
+            {
+              "type": "checkBox",
+              "text": "Active labor (strong contractions) lasted more than 12 hours"
+            },
+            {
+              "type": "checkBox",
+              "text": "Seizures during labor/delivery (convulsion/ fits)"
+            },
+            {
+              "type": "checkBox",
+              "text": "Problem removing placenta"
+            },
+            {
+              "type": "checkBox",
+              "text": "High blood pressure during pregnancy"
+            },
+            {
+              "type": "radio",
+              "text": "Not sure"
+            },
+            {
+              "type": "radio",
+              "text": "None of the above"
+            }
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [
+            "Excessive bleeding",
+            "Prolonged labor (lasting more than 12 hours)",
+            "eizures during labor/delivery (convulsion/ fits)",
+            "Problem removing placenta",
+            "High blood pressure during pregnancy"
+          ],
+          "mediumRiskResponse": ["Not sure"],
+          "lowRiskResponse": ["None of the above"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "arrayOfStrings",
+          "inputType": "multi",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "hideConditions": {
+        "3_a": ["Yes"]
+      },
+      "active": true,
+      "category": "Obstetric History (part 1)",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 10,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Did your baby(s) have any health or medical problems at birth?",
+          "options": ["Yes", "Not sure", "No"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["Yes"],
+          "mediumRiskResponse": ["Not sure"],
+          "lowRiskResponse": ["No"],
+          "canBreakExecution": true,
+          "breakWhenRiskIs": ["low"],
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false
+        },
+        {
+          "number": "b",
+          "question": "If yes, please tick all that applies?",
+          "options": [
+            {
+              "type": "checkBox",
+              "text": "Baby is born with a body part that looks different from what it should look like"
+            },
+            { "type": "checkBox", "text": "Difficulty in breathing" },
+            { "type": "checkBox", "text": "Child did not cry at birth" },
+            {
+              "type": "checkBox",
+              "text": "Low birth weight (less than 2.5kg)"
+            },
+            { "type": "checkBox", "text": "High birth weight (more than 4kg)" }
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [
+            "Baby is born with a body part that looks different from what it should look like",
+            "Difficulty in breathing",
+            "Child did not cry at birth",
+            "Low birth weight (less than 2.5kg)",
+            "High birth weight (more than 4kg)"
+          ],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": [],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "arrayOfStrings",
+          "inputType": "multi",
+          "risk": "",
+          "shouldSkip": false,
+          "hideConditions": {
+            "10_a": ["No", "Not sure"]
+          }
+        }
+      ],
+      "hideConditions": {
+        "3_a": ["Yes"]
+      },
+      "active": true,
+      "category": "Obstetric History (part 1)",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 11,
+      "questions": [
+        {
+          "number": "a",
+          "question": "For this pregnancy, did you have medical treatment to get pregnant?",
+          "options": ["Yes", "No"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["Yes"],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": ["No"],
+          "canBreakExecution": true,
+          "breakWhenRiskIs": ["low"],
+          "responseType": "string",
+          "inputType": "boolean",
+          "risk": "",
+          "shouldSkip": false
+        },
+        {
+          "number": "b",
+          "question": "If yes, which treatment did you have?",
+          "options": [
+            "Artificial insemination",
+            "In-vitro fertilization",
+            "Other treatments"
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [
+            "Artificial insemination",
+            "In-vitro fertilization",
+            "Other treatments"
+          ],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": [],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false,
+          "hideConditions": {
+            "11_a": ["No"]
+          }
+        }
+      ],
+      "active": true,
+      "category": "Obstetric History (part 1)",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 12,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Have you experienced any vaginal bleeding during this pregnancy?",
+          "options": ["Yes", "No"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["Yes"],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": ["No"],
+          "canBreakExecution": true,
+          "breakWhenRiskIs": ["low"],
+          "responseType": "string",
+          "inputType": "boolean",
+          "risk": "",
+          "shouldSkip": false
+        },
+        {
+          "number": "b",
+          "question": "How heavy is the bleeding experienced?",
+          "options": [
+            "Heavy (more than 5 soaked pads a day)",
+            "Slightly heavy (up to 3 pads a day for over 2 days)",
+            "Slightly heavy (up to 3 pads for less than a day)",
+            "Light (not more than 1 pad a day)"
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [
+            "Heavy (more than 5 soaked pads a day)",
+            "Slightly heavy (up to 3 pads a day for over 2 days)"
+          ],
+          "mediumRiskResponse": [
+            "Slightly heavy (up to 3 pads for less than a day)"
+          ],
+          "lowRiskResponse": ["Light (not more than 1 pad a day)"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false,
+          "hideConditions": {
+            "12_a": ["No"]
+          }
+        }
+      ],
+      "active": true,
+      "category": "Pregnancy Symptoms",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 13,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Are you currently experiencing stomach pain during this pregnancy?",
+          "options": ["Yes", "No"],
+          "response": [],
+          "active": true,
+          "highRiskResponse": ["Yes"],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": ["No"],
+          "canBreakExecution": true,
+          "breakWhenRiskIs": ["low"],
+          "responseType": "string",
+          "inputType": "boolean",
+          "risk": "",
+          "shouldSkip": false
+        },
+        {
+          "number": "b",
+          "question": "If yes, how painful was it on a scale of 1 to 10, with 10 being the worst pain and 1 being the smallest pain you've ever felt",
+          "options": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+          "response": [],
+          "active": true,
+          "highRiskResponse": [7, 8, 9, 10],
+          "mediumRiskResponse": [4, 5, 6],
+          "lowRiskResponse": [1, 2, 3],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "number",
+          "inputType": "number",
+          "risk": "",
+          "shouldSkip": false,
+          "hideConditions": {
+            "13_a": ["No"]
+          }
+        }
+      ],
+      "active": true,
+      "category": "Pregnancy Symptoms",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 14,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Are you currently experiencing vomiting more than 5 times a day?",
+          "options": ["Yes", "No"],
+          "response": [],
+          "active": true,
+          "highRiskResponse": ["Yes"],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": ["No"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "string",
+          "inputType": "boolean",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Pregnancy Symptoms",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 15,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Have you experienced leakage of large amount of clear fluid (like water) from your vagina during this pregnancy?",
+          "options": ["Yes", "No", "Not Sure"],
+          "response": [],
+          "active": true,
+          "highRiskResponse": ["Yes"],
+          "mediumRiskResponse": ["Not Sure"],
+          "lowRiskResponse": ["No"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Pregnancy Symptoms",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 16,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Have you felt your baby move during this pregnancy?",
+          "options": ["Pregnancy is less than 5 months", "Yes", "No"],
+          "response": [],
+          "active": true,
+          "highRiskResponse": ["No"],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": ["Yes", "Pregnancy is less than 5 months"],
+          "canBreakExecution": true,
+          "breakWhenRiskIs": ["high"],
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false,
+          "hideConditions": {
+            "4_b": [0, 1, 2, 3, 4]
+          }
+        }
+      ],
+
+      "active": true,
+      "category": "Pregnancy Symptoms",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 17,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Have you noticed any reduction in the movement of your baby during this pregnancy?",
+          "options": [
+            "Absent baby movement",
+            "Reduced baby movement (less than 10 kicks in a 12 hours time frame)",
+            "Normal baby movement (12 or more kicks within 12 hours)",
+            "Pregnancy is less than 7 months",
+            "Not sure"
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["Absent baby movement"],
+          "mediumRiskResponse": [
+            "Reduced baby movement (less than 10 kicks in a 12 hours time frame)",
+            "Not sure"
+          ],
+          "lowRiskResponse": [
+            "Pregnancy is less than 7 months",
+            "Normal baby movement (12 or more kicks within 12 hours)"
+          ],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false,
+          "hideConditions": {
+            "4_b": [0, 1, 2, 3, 4, 5, 6]
+          }
+        }
+      ],
+
+      "active": true,
+      "category": "Pregnancy Symptoms",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 18,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Have you experienced any of the following?",
+          "options": [
+            "Severe headache ,abnormal body movement and difficulty with seeing",
+            "Constant (non-stop) headache, feeling your heart beat fast and swollen face",
+            "None"
+          ],
+          "response": [],
+          "active": true,
+          "highRiskResponse": [
+            "Severe headache ,abnormal body movement and difficulty with seeing"
+          ],
+          "mediumRiskResponse": [
+            "Constant (non-stop) headache, feeling your heart beat fast and swollen face"
+          ],
+          "lowRiskResponse": ["None"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "hasPairedOptions": false,
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Pregnancy Symptoms",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 19,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Have you experienced any of the following symptoms? (select all that is applicable)",
+          "options": [
+            {
+              "type": "checkBox",
+              "text": "Feeling weak all over the body"
+            },
+            {
+              "type": "checkBox",
+              "text": "Headache"
+            },
+            { "type": "checkBox", "text": "Paleness (palms looking white)" },
+            { "type": "checkBox", "text": "Weight loss" },
+            { "type": "checkBox", "text": "Dizziness" },
+            { "type": "checkBox", "text": "Fainting" },
+            { "type": "radio", "text": "None" }
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["Fainting"],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": ["None"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "hasPairedOptions": true,
+          "questionNumber": 19,
+          "responseType": "arrayOfStrings",
+          "inputType": "multi",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Pregnancy Symptoms",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 20,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Do you have these symptoms?",
+          "options": [
+            "High fever (above 38.3°C) with body weakness & joint pain",
+            "Fever with Frequent urination and/or Pain on urination",
+            "Fever & vomiting only",
+            "Fever & mild abdominal pain only",
+            "Fever only",
+            "None"
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [
+            "High fever (above 38.3°C) with body weakness & joint pain",
+            "Fever with Frequent urination and/or Pain on urination"
+          ],
+          "mediumRiskResponse": [
+            "Fever & vomiting only",
+            "Fever & mild abdominal pain only",
+            "Fever only"
+          ],
+          "lowRiskResponse": ["None"],
+          "canBreakExecution": true,
+          "breakWhenRiskIs": ["low"],
+          "hasPairedOptions": false,
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Pregnancy Symptoms",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 21,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Do you have any of the following medical conditions?",
+          "options": [
+            { "type": "checkBox", "text": "HIV" },
+            { "type": "checkBox", "text": "Hepatitis B" },
+            {
+              "type": "checkBox",
+              "text": "Hypertension/ High blood pressure (b.p)"
+            },
+            { "type": "checkBox", "text": "Diabetes/ high blood sugar" },
+            { "type": "checkBox", "text": "Sickle cell disease" },
+            { "type": "checkBox", "text": "Heart failure/ disease" },
+            { "type": "checkBox", "text": "Asthma" },
+            { "type": "checkBox", "text": "Kidney disease" },
+            {
+              "type": "checkBox",
+              "text": "Psychiatric/ Mental health conditions"
+            },
+            {
+              "type": "checkBox",
+              "text": "Any of these (Epilepsy, Lupus erythematosus, Antiphospholipid syndrome, Deep venous thrombosis, Thyroid disorder)"
+            },
+            { "type": "radio", "text": "None of the above" }
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [
+            "HIV",
+            "Hepatitis B",
+            "Hypertension/ High blood pressure (b.p)",
+            "Diabetes/ high blood sugar",
+            "Sickle cell disease",
+            "Heart failure/ disease",
+            "Asthma",
+            "Kidney disease",
+            "Psychiatric/ Mental health conditions",
+            "Any of these (Epilepsy, Lupus erythematosus, Antiphospholipid syndrome, Deep venous thrombosis, Thyroid disorder)"
+          ],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": ["None of the above"],
+          "canBreakExecution": true,
+          "breakWhenRiskIs": ["low"],
+          "responseType": "arrayOfStrings",
+          "inputType": "multi",
+          "risk": "",
+          "shouldSkip": false
+        },
+        {
+          "number": "b",
+          "question": "If HIV positive, are you on ART?",
+          "options": ["Yes", "No"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["No"],
+          "mediumRiskResponse": ["Yes"],
+          "lowRiskResponse": [],
+          "canBreakExecution": true,
+          "breakWhenRiskIs": ["medium"],
+          "responseType": "string",
+          "inputType": "boolean",
+          "risk": "",
+          "shouldSkip": false,
+          "hideConditions": {
+            "21_a": [
+              "Hepatitis B",
+              "Hypertension/ High blood pressure (b.p)",
+              "Diabetes/ high blood sugar",
+              "Sickle cell disease",
+              "Heart failure/ disease",
+              "Asthma",
+              "Kidney disease",
+              "Psychiatric/ Mental health conditions",
+              "Any of these (Epilepsy, Lupus erythematosus, Antiphospholipid syndrome, Deep venous thrombosis, Thyroid disorder)",
+              "None of the above"
+            ]
+          }
+        },
+        {
+          "number": "c",
+          "question": "If yes, what is your viral load?",
+          "options": [0, 1000000],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [201, 1000000],
+          "mediumRiskResponse": [0, 200],
+          "lowRiskResponse": [],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "hasRangeValues": true,
+          "responseType": "number",
+          "inputType": "number",
+          "risk": "",
+          "shouldSkip": false,
+          "hideConditions": {
+            "21_b": ["No"]
+          }
+        }
+      ],
+      "active": true,
+      "category": "Medical History",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 22,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Have you experienced any of the following symptoms prior to this pregnancy?",
+          "options": [
+            {
+              "type": "checkBox",
+              "text": "Shortness of breath when doing light activities (activities such as sweeping with broomstick, dishwashing), headache, swollen feet and feeling your heart beat fast"
+            },
+            {
+              "type": "checkBox",
+              "text": "Too much water intake, too much urination, foamy urine, and dryness of throat"
+            },
+            {
+              "type": "checkBox",
+              "text": "Bone/ Joint pain that comes and goes, body pain, and shortness of breath"
+            },
+            {
+              "type": "checkBox",
+              "text": "Body swelling, restlessness, easily gets tired when doing small work, and feeling your heart beat fast"
+            },
+            { "type": "checkBox", "text": "Seizure/abnormal body movement" },
+            { "type": "checkBox", "text": "Frequent pregnancy loss" },
+            { "type": "checkBox", "text": "Painful leg or legs swelling" },
+            {
+              "type": "checkBox",
+              "text": "Cough beyond 2 weeks, sweating heavily at night, sudden/ unexplained weight loss"
+            },
+            { "type": "radio", "text": "Not sure" },
+            { "type": "radio", "text": "None of the above" }
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [
+            "Shortness of breath when doing light activities (activities such as sweeping with broomstick, dishwashing), headache, swollen feet and feeling your heart beat fast",
+            "Too much water intake, too much urination, foamy urine, and dryness of throat",
+            "Bone/ Joint pain that comes and goes, body pain, and shortness of breath",
+            "Body swelling, restlessness, easily gets tired when doing small work, and feeling your heart beat fast",
+            "Seizure/abnormal body movement",
+            "Frequent pregnancy loss",
+            "Painful leg or legs swelling",
+            "Cough beyond 2 weeks, sweating heavily at night, sudden/ unexplained weight loss"
+          ],
+          "mediumRiskResponse": ["Not sure"],
+          "lowRiskResponse": ["None of the above"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "hasPairedOptions": false,
+          "responseType": "arrayOfStrings",
+          "inputType": "multi",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Medical History",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 23,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Have you had any of these operations/ surgeries:",
+          "options": [
+            { "type": "checkBox", "text": "Fibroid operation" },
+            {
+              "type": "checkBox",
+              "text": "Operation for leakage of urine or faeces from the vagina"
+            },
+            {
+              "type": "checkBox",
+              "text": "Operation for uterine rupture/ torn womb"
+            },
+            {
+              "type": "checkBox",
+              "text": "Operation for any tear that extended into the anus"
+            },
+            { "type": "radio", "text": "Not sure" },
+            { "type": "radio", "text": "None of the above" }
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [
+            "Fibroid operation",
+            "Operation for leakage of urine or faeces from the vagina",
+            "Operation for uterine rupture/ torn womb",
+            "Operation for any tear that extended into the anus"
+          ],
+          "mediumRiskResponse": ["Not sure"],
+          "lowRiskResponse": ["None of the above"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "arrayOfStrings",
+          "inputType": "multi",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Medical History",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 24,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Do you use any of these recreational drugs or prescription drugs",
+          "options": [
+            { "type": "checkBox", "text": "Cigarette smoking" },
+            {
+              "type": "checkBox",
+              "text": "Marijuana (loud, igbo, ganja, pot, indian hemp)"
+            },
+            { "type": "checkBox", "text": "Alcohol" },
+            { "type": "checkBox", "text": "Cocaine" },
+            {
+              "type": "checkBox",
+              "text": "Methamphetamine (Molly, ecstasy, ice, X)"
+            },
+            { "type": "checkBox", "text": "Tramadol" },
+            {
+              "type": "checkBox",
+              "text": "Any of these (Heroin, LSD (acid), Magic mushrooms, Ketamine, Narcotics (morphine, pentazozine, refnol))"
+            },
+            {
+              "type": "radio",
+              "text": "Abuse of cough syrup containing codeine"
+            },
+            {
+              "type": "radio",
+              "text": "No recreational/ prescription drug use"
+            }
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [
+            "Cigarette smoking",
+            "Marijuana (loud, igbo, ganja, pot, indian hemp)",
+            "Alcohol",
+            "Cocaine",
+            "Methamphetamine (Molly, ecstasy, ice, X)",
+            "Tramadol",
+            "Any of these (Heroin, LSD (acid), Magic mushrooms, Ketamine, Narcotics (morphine, pentazozine, refnol))"
+          ],
+          "mediumRiskResponse": ["Abuse of cough syrup containing codeine"],
+          "lowRiskResponse": ["No recreational/ prescription drug use"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "arrayOfStrings",
+          "inputType": "multi",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Drug History",
+      "platforms": ["heliumDoc", "heliumEmr"]
+    },
+    {
+      "id": 25,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Have you seen a doctor/nurse/ midwife?",
+          "options": ["Yes", "No"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["Yes"],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": ["No"],
+          "canBreakExecution": true,
+          "breakWhenRiskIs": ["low"],
+          "responseType": "string",
+          "inputType": "boolean",
+          "risk": "",
+          "shouldSkip": false
+        },
+        {
+          "number": "b",
+          "question": "What were the examination findings during your contact with a doctor/ nurse/ midwife?Tick all that apply",
+          "options": [
+            { "type": "checkBox", "text": "Palms or soles looking white" },
+            { "type": "checkBox", "text": "Eyes and mouth looking white" },
+            { "type": "checkBox", "text": "Temperature greater than 38C" },
+            { "type": "checkBox", "text": "Massive leg swelling" },
+            { "type": "checkBox", "text": "Obese OR Severely underweight" },
+            {
+              "type": "checkBox",
+              "text": "Severe high blood pressure (b.p.) ≥160/110mmHg"
+            },
+            {
+              "type": "checkBox",
+              "text": "Baby's heart beating too fast or too slow (<120/min and >160/min)"
+            },
+            {
+              "type": "checkBox",
+              "text": "Short stature (less than or equal to 152cm)"
+            },
+            {
+              "type": "radio",
+              "text": "High blood pressure <160/110 to >140/90 mmHg"
+            },
+            { "type": "checkBox", "text": "Physical disability" },
+            { "type": "checkBox", "text": "Normal blood pressure (b.p.)" }
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [
+            "Palms or soles looking white",
+            "Eyes and mouth looking white",
+            "Temperature greater than 38C",
+            "Massive leg swelling",
+            "Obese OR Severely underweight",
+            "Severe high blood pressure (b.p.) ≥160/110mmHg",
+            "Baby's heart beating too fast or too slow (<120/min and >160/min)",
+            "Short stature (less than or equal to 152cm)"
+          ],
+          "mediumRiskResponse": [
+            "High blood pressure <160/110 to >140/90 mmHg",
+            "Physical disability"
+          ],
+          "lowRiskResponse": ["Normal blood pressure (b.p.)"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "arrayOfStrings",
+          "inputType": "multi",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Physical Examination Results",
+      "platforms": ["heliumEmr"]
+    },
+    {
+      "id": 26,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Urinalysis results",
+          "options": [
+            { "type": "checkBox", "text": "Protein present (+)" },
+            { "type": "checkBox", "text": "Glucose present (+)" },
+            { "type": "checkBox", "text": "Nitrites present (+)" },
+            { "type": "checkBox", "text": "Blood present (+)" },
+            { "type": "checkBox", "text": "Leucocytes present" },
+            { "type": "radio", "text": "Normal results" }
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["Protein present (+)", "Glucose present (+)"],
+          "mediumRiskResponse": [
+            "Nitrites present (+)",
+            "Blood present (+)",
+            "Leucocytes present"
+          ],
+          "lowRiskResponse": ["Normal results"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "arrayOfStrings",
+          "inputType": "multi",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Investigation Results",
+      "platforms": ["heliumEmr"]
+    },
+    {
+      "id": 27,
+      "questions": [
+        {
+          "number": "a",
+          "question": "HIV test results",
+          "options": [
+            "Positive newly diagnosed, not on ART",
+            "Positive on ART",
+            "Negative"
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["Positive newly diagnosed, not on ART"],
+          "mediumRiskResponse": ["Positive on ART"],
+          "lowRiskResponse": ["Negative"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Investigation Results",
+      "platforms": ["heliumEmr"]
+    },
+    {
+      "id": 28,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Oral glucose tolerance test results",
+          "options": [
+            {
+              "type": "checkBox",
+              "text": "Fasting blood sugar (greater than 5.1 mmol/L)"
+            },
+            {
+              "type": "checkBox",
+              "text": "1 hour blood sugar (greater than 10.0 mmol/L)"
+            },
+            {
+              "type": "checkBox",
+              "text": "2 hours blood sugar (greater than 8.5 mmol/L)"
+            },
+            { "type": "radio", "text": "Normal results/ none of the above" }
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [
+            "Fasting blood sugar (greater than 5.1 mmol/L)",
+            "1 hour blood sugar (greater than 10.0 mmol/L)",
+            "2 hours blood sugar (greater than 8.5 mmol/L)"
+          ],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": ["Normal results/ none of the above"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "arrayOfStrings",
+          "inputType": "multi",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Investigation Results",
+      "platforms": ["heliumEmr"]
+    },
+    {
+      "id": 29,
+      "questions": [
+        {
+          "number": "a",
+          "question": "VDRL",
+          "options": ["Positive", "Negative"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [],
+          "mediumRiskResponse": ["Positive"],
+          "lowRiskResponse": ["Negative"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Investigation Results",
+      "platforms": ["heliumEmr"]
+    },
+    {
+      "id": 30,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Hepatitis B",
+          "options": ["Positive", "Negative"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["Positive"],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": ["Negative"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Investigation Results",
+      "platforms": ["heliumEmr"]
+    },
+    {
+      "id": 31,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Hepatitis C",
+          "options": ["Positive", "Negative"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [],
+          "mediumRiskResponse": ["Positive"],
+          "lowRiskResponse": ["Negative"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Investigation Results",
+      "platforms": ["heliumEmr"]
+    },
+    {
+      "id": 32,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Blood group (Pick the option that contains your blood group)",
+          "options": ["A+,  B+, AB+, O+", "A-,  B-, AB-, O-"],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["A-,  B-, AB-, O-"],
+          "mediumRiskResponse": [],
+          "lowRiskResponse": ["A+,  B+, AB+, O+"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Investigation Results",
+      "platforms": ["heliumEmr"]
+    },
+    {
+      "id": 33,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Packed Cell Volume (PCV)",
+          "options": [
+            "PCV less than 24%",
+            "PCV between 24% to 32%",
+            "PCV 33% and above"
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": ["PCV less than 24%"],
+          "mediumRiskResponse": ["PCV between 24% to 32%"],
+          "lowRiskResponse": ["PCV 33% and above"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "string",
+          "inputType": "radio",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Investigation Results",
+      "platforms": ["heliumEmr"]
+    },
+    {
+      "id": 34,
+      "questions": [
+        {
+          "number": "a",
+          "question": "Ultrasound scan",
+          "options": [
+            { "type": "checkBox", "text": "Placenta previa" },
+            { "type": "checkBox", "text": "Reduced/Increased liquor volume" },
+            { "type": "checkBox", "text": "Breech presentation" },
+            { "type": "checkBox", "text": "Tranverse lie/ oblique lie" },
+            { "type": "checkBox", "text": "Fetal heart rate abnormality" },
+            { "type": "radio", "text": "Not sure" },
+            { "type": "radio", "text": "None of the above" }
+          ],
+          "response": "",
+          "active": true,
+          "highRiskResponse": [
+            "Placenta previa",
+            "Reduced/Increased liquor volume",
+            "Breech presentation",
+            "Tranverse lie/ oblique lie",
+            "Fetal heart rate abnormality"
+          ],
+          "mediumRiskResponse": ["Not sure"],
+          "lowRiskResponse": ["None of the above"],
+          "canBreakExecution": false,
+          "breakWhenRiskIs": [],
+          "responseType": "arrayOfStrings",
+          "inputType": "multi",
+          "risk": "",
+          "shouldSkip": false
+        }
+      ],
+      "active": true,
+      "category": "Investigation Results",
+      "platforms": ["heliumEmr"]
+    }
+  ]
+}

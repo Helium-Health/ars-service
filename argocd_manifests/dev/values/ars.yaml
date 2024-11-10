@@ -1,0 +1,49 @@
+nameOverride: "ars"
+fullnameOverride: "ars"
+
+replicaCount: 1
+
+image:
+  repository: onemed/ars
+  tag: dev
+  pullPolicy: Always
+
+imagePullSecrets:
+ - name: regcred
+
+service:
+  type: LoadBalancer
+  port: 3000
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+   cert-manager.io/cluster-issuer: letsencrypt-production
+   nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  hosts:
+    - host: ars.onemedops.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - hosts:
+      - ars.onemedops.com
+      secretName: ars-dev-tls-secret
+Secret:
+  enabled: true
+  Data:
+    DB_USERNAME: aGVsaXVt
+    DB_PASSWORD: bFlVVVhDYTFjWktQUjV5VmNHOU0=
+    DB_DATABASE: dmFjY2luZW1hc3Rlcg==
+    DB_HOST: bGFzZXJzLWRldi10ZXN0LWRiLmN3Z3oxcDdma3d1bi51cy1lYXN0LTEucmRzLmFtYXpvbmF3cy5jb20=
+    DB_PORT: NTQzMg==
+    DB_SCHEMA: YXJz
+    NODE_ENV: ZGV2ZWxvcG1lbnQ=
+    API_PORT: MzAwMA==
+    REDIS_HOST: cmVkaXMtc2hhcmVkLW1hc3Rlci5yZWRpcy5zdmMuY2x1c3Rlci5sb2NhbA==
+    REDIS_PORT: NjM3OQ==
+    REDIS_DB: MTU=
+    RAPID_PRO_URL: aHR0cDovL3JhcGlkcHJvLXRlc3Qub25lbWVkb3BzLmNvbQ==
+    RAPID_PRO_API_TOKEN: NTE3YTFhZjYxMzY2YmJmYzY5YWRjNzNmOGYzZjI1NWRiNTg4ZWJjMQ==
+    RAPID_PRO_CHANNEL_UUID: ZjNlODIxYjUtM2E4MS00NGYxLTg2ZjctZjc2NDZmYmQ5NmNh

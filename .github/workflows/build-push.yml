@@ -1,0 +1,90 @@
+name: Build and publish ARS Docker images
+
+on:
+  push:
+    branches:
+      - staging
+      - develop
+
+env:
+  REGISTRY: docker.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push-ars-image:
+    name: Build and push ARS Docker image
+    runs-on: ubuntu-latest
+    if: ${{ always() && github.ref == 'refs/heads/develop' ||  github.ref == 'refs/heads/staging' }}
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build and push ARS Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64
+          tags: onemed/ars:${{ github.ref == 'refs/heads/develop' && 'dev' || github.ref == 'refs/heads/staging' && 'staging' || 'latest' }}
+          file: ./Dockerfile
+
+      - name: Run Trivy vulnerability scanner in repo mode
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'repo'
+          hide-progress: false
+          format: 'table'
+          output: "trivy-results-repo.txt"
+          ignore-unfixed: true
+          severity: 'CRITICAL,HIGH'      
+
+
+      - name: Run Trivy Image vulnerability scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: onemed/ars:${{ github.ref == 'refs/heads/develop' && 'dev' || github.ref == 'refs/heads/staging' && 'staging' || 'latest' }}
+          format: 'table'
+          output: "trivy-results-image.txt"
+          ignore-unfixed: true
+          severity: 'CRITICAL,HIGH'
+          # exit-code: '1'
+        env:
+          TRIVY_USERNAME: ${{ secrets.DOCKER_USER }}
+          TRIVY_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Upload Trivy scan results to artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-results
+          path: |
+            trivy-results-repo.txt
+            trivy-results-image.txt
+            
+          
+      - name: Set up ArgoCD CLI
+        run: |
+          sudo curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+          sudo chmod +x /usr/local/bin/argocd
+
+      - name: ArgoCD Login
+        run: |
+          yes | argocd login abd13bb6d345441869c753ee218456c7-209703986.eu-west-1.elb.amazonaws.com --insecure --username ${{ secrets.ARGOCD_USERNAME }} --password  ${{ secrets.ARGOCD_PASSWORD }}
+
+      - name: ArgoCD Sync App
+        env:
+          APP_NAME: ars-${{ github.ref == 'refs/heads/develop' && 'dev' || github.ref == 'refs/heads/staging' && 'staging' || 'latest' }}
+        run: |
+          argocd app actions run $APP_NAME restart --kind Deployment
+
+  slack-notify:
+    needs: [build-and-push-ars-image]
+    if: ${{ always() && ( github.ref == 'refs/heads/develop') || ( github.ref == 'refs/heads/staging')}}
+    uses: Helium-Health/.github/.github/workflows/slack-notification-global.yaml@main
+    secrets: inherit

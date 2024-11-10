@@ -1,0 +1,14 @@
+name: Handle Dispatch Event for Doppler
+on:
+  workflow_dispatch:
+
+jobs:
+  process_dispatch:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run Custom Script
+      run: |
+        echo "I worked!"
