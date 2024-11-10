@@ -2,7 +2,7 @@
 # BUILD FOR LOCAL DEVELOPMENT
 ###################
 
-FROM node:18-alpine As build
+FROM node:23-alpine As build
 
 WORKDIR /usr/src/app
 COPY package*.json ./
@@ -15,7 +15,7 @@ RUN npm run build
 
 # USER node
 
-FROM node:18-alpine as runtime
+FROM node:23-alpine as runtime
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
