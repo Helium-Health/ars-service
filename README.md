@@ -421,7 +421,7 @@ The ARS system supports both web and USSD interfaces for seamless access to ante
   #### Sample Response
   ```json
       {
-      "patient_id": "abc12345",
+      "patient_id": "12345",
       "risk_level": "high",
       "risk_value": 105,
       "patient_response": "[{\"id\":1,\"riskValue\":0,\"questions\":[{\"number\":\"a\",\"response\":24,\"riskValue\":0}]},{\"id\":2,\"riskValue\":0,\"questions\":[{\"number\":\"a\",\"response\":\"Married\",\"riskValue\":0}]},{\"id\":3,\"riskValue\":0,\"questions\":[{\"number\":\"a\",\"response\":\"No\",\"riskValue\":7},{\"number\":\"b\",\"response\":3,\"riskValue\":0}]},{\"id\":4,\"riskValue\":0,\"questions\":[{\"number\":\"a\",\"response\":\"No\",\"riskValue\":1},{\"number\":\"b\",\"response\":13,\"riskValue\":0},{\"number\":\"c\",\"response\":\"No\",\"riskValue\":1}]},{\"id\":5,\"riskValue\":7,\"questions\":[{\"number\":\"a\",\"response\":\"More than one baby\",\"riskValue\":7}]},{\"id\":6,\"riskValue\":7,\"questions\":[{\"number\":\"a\",\"response\":\"Miscarriage\",\"riskValue\":7},{\"number\":\"b\",\"response\":3,\"riskValue\":7},{\"number\":\"c\",\"response\":\"No\",\"riskValue\":7}]},{\"id\":7,\"riskValue\":7,\"questions\":[{\"number\":\"a\",\"response\":\"No\",\"riskValue\":7}]},{\"id\":8,\"riskValue\":0,\"questions\":[{\"number\":\"a\",\"response\":[\"Normal delivery (vaginal delivery)\"],\"riskValue\":0}]},{\"id\":9,\"riskValue\":1,\"questions\":[{\"number\":\"a\",\"response\":[\"Not sure\"],\"riskValue\":1}]},{\"id\":10,\"riskValue\":7,\"questions\":[{\"number\":\"a\",\"response\":\"Yes\",\"riskValue\":7},{\"number\":\"b\",\"response\":[\"Child did not cry at birth\"],\"riskValue\":7}]},{\"id\":11,\"riskValue\":7,\"questions\":[{\"number\":\"a\",\"response\":\"Yes\",\"riskValue\":7},{\"number\":\"b\",\"response\":\"In-vitro fertilization\",\"riskValue\":7}]},{\"id\":12,\"riskValue\":7,\"questions\":[{\"number\":\"a\",\"response\":\"Yes\",\"riskValue\":7},{\"number\":\"b\",\"response\":\"Slightly heavy (up to 3 pads a day for over 2 days)\",\"riskValue\":7}]},{\"id\":13,\"riskValue\":0,\"questions\":[{\"number\":\"a\",\"response\":\"No\",\"riskValue\":0}]},{\"id\":14,\"riskValue\":0,\"questions\":[{\"number\":\"a\",\"response\":\"No\",\"riskValue\":0}]},{\"id\":15,\"riskValue\":7,\"questions\":[{\"number\":\"a\",\"response\":\"Yes\",\"riskValue\":7}]},{\"id\":16,\"riskValue\":0,\"questions\":[{\"number\":\"a\",\"response\":\"Yes\",\"riskValue\":0}]},{\"id\":17,\"riskValue\":0,\"questions\":[{\"number\":\"a\",\"response\":\"Normal baby movement (12 or more kicks within 12 hours)\",\"riskValue\":0}]},{\"id\":18,\"riskValue\":7,\"questions\":[{\"number\":\"a\",\"response\":\"Severe headache ,abnormal body movement and difficulty with seeing\",\"riskValue\":7}]},{\"id\":19,\"riskValue\":1,\"questions\":[{\"number\":\"a\",\"response\":[\"Weight loss\",\"Dizziness\"],\"riskValue\":1}]},{\"id\":20,\"riskValue\":1,\"questions\":[{\"number\":\"a\",\"response\":\"Fever & mild abdominal pain only\",\"riskValue\":1}]},{\"id\":21,\"riskValue\":1,\"questions\":[{\"number\":\"a\",\"response\":[\"HIV\"],\"riskValue\":7},{\"number\":\"b\",\"response\":\"No\",\"riskValue\":7},{\"number\":\"c\",\"response\":200,\"riskValue\":1}]},{\"id\":22,\"riskValue\":7,\"questions\":[{\"number\":\"a\",\"response\":[\"Bone/ Joint pain that comes and goes, body pain, and shortness of breath\"],\"riskValue\":7}]},{\"id\":23,\"riskValue\":0,\"questions\":[{\"number\":\"a\",\"response\":[\"None of the above\"],\"riskValue\":0}]},{\"id\":24,\"riskValue\":7,\"questions\":[{\"number\":\"a\",\"response\":[\"Cocaine\"],\"riskValue\":7}]},{\"id\":25,\"riskValue\":1,\"questions\":[{\"number\":\"a\",\"response\":\"Yes\",\"riskValue\":7},{\"number\":\"b\",\"response\":[\"Physical disability\"],\"riskValue\":1}]},{\"id\":26,\"riskValue\":7,\"questions\":[{\"number\":\"a\",\"response\":[\"Blood present (+)\",\"Protein present (+)\"],\"riskValue\":7}]},{\"id\":27,\"riskValue\":1,\"questions\":[{\"number\":\"a\",\"response\":\"Positive on ART\",\"riskValue\":1}]},{\"id\":28,\"riskValue\":0,\"questions\":[{\"number\":\"a\",\"response\":[\"Normal results/ none of the above\"],\"riskValue\":0}]},{\"id\":29,\"riskValue\":0,\"questions\":[{\"number\":\"a\",\"response\":\"Negative\",\"riskValue\":0}]},{\"id\":30,\"riskValue\":7,\"questions\":[{\"number\":\"a\",\"response\":\"Positive\",\"riskValue\":7}]},{\"id\":31,\"riskValue\":0,\"questions\":[{\"number\":\"a\",\"response\":\"Negative\",\"riskValue\":0}]},{\"id\":32,\"riskValue\":7,\"questions\":[{\"number\":\"a\",\"response\":\"A-,  B-, AB-, O-\",\"riskValue\":7}]},{\"id\":33,\"riskValue\":1,\"questions\":[{\"number\":\"a\",\"response\":\"PCV between 24% to 32%\",\"riskValue\":1}]},{\"id\":34,\"riskValue\":7,\"questions\":[{\"number\":\"a\",\"response\":[\"Reduced/Increased liquor volume\",\"Breech presentation\"],\"riskValue\":7}]}]",
@@ -435,7 +435,7 @@ The ARS system supports both web and USSD interfaces for seamless access to ante
 - **Retrieve Stratification Results Endpoint**  
   This endpoint retrieves the stratification results for a specific patient, categorized by risk levels. It provides detailed information about each patient’s assessment, enabling healthcare providers to review and act on the stratified data.
 
-  ### Endpoint: `GET /ars/results`
+  ### Endpoint: `GET /ars`
   
   - **Query Parameters:**
     - `patient_id` (optional): Retrieve results for a specific patient by ID. If omitted, results for all patients will be returned.
@@ -443,13 +443,26 @@ The ARS system supports both web and USSD interfaces for seamless access to ante
 
   #### Sample Request
   ```bash
-  GET /ars/results?patient_id=12345&risk_level=high
+  GET /ars?patient_id=12345&risk_level=high
+
+
+- **Retrieve single stratification Result Endpoint**  
+  This endpoint retrieves a patient stratification result.
+
+  ### Endpoint: `GET /ars/results/:id`
+  
+  - **Param Parameters:**
+    - `id`: ID of the record to be retrieved
+
+  #### Sample Request
+  ```bash
+  GET /ars/results/:id
 
 
 - **Create Patient Profile Endpoint**  
   This endpoint allows the creation of a new patient profile in the ARS system.
 
-  ### Endpoint: `POST /patients`
+  ### Endpoint: `POST /patient`
   
   - **Request Payload:**
     ```json
@@ -458,7 +471,7 @@ The ARS system supports both web and USSD interfaces for seamless access to ante
       "lastName": "Elizabeth",
       "state": "Lagos",
       "lga": "Alimosho",
-      "phoneNumber": "+2347069639117",
+      "phoneNumber": "+2347011111111",
       "email": "queen@gmail.com"
     }
     ```
@@ -524,7 +537,7 @@ On completion of the questionnaire, the responses to each question are combined 
 
 - **Endpoint to Receive from Rapid-Pro** 
 
-### Endpoint: `POST /ussd/from-rapid-pro`
+### Endpoint: `POST /ussd/receive`
 
 - **Description:**  
   This endpoint receives the next question to be answered by the patient from Rapid-Pro in a predefined order. It is connected to the chat endpoint through an event-driven mechanism, ensuring seamless communication between Rapid-Pro and the USSD chat system.

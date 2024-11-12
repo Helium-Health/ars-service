@@ -244,10 +244,8 @@ export class UssdController {
       const { serviceCode, phoneNumber } = body;
       const formattedPhone: string = Utility.reformatPhoneNumber(phoneNumber);
       const eventKey: string = Utility.extractUserPhone(formattedPhone);
-      const continueKey = `${eventKey}-continue`;
-      const sessionKey = `${eventKey}-session-info`;
-      const participantKey = `participant-${eventKey}`;
-      const participantMessageKey = `message-${eventKey}`;
+      const { continueKey, sessionKey, participantKey, participantMessageKey } =
+        this.service.generateKeys(eventKey);
 
       try {
         let sessionInfo: SessionDataType = await this.getSession(sessionKey);
@@ -415,9 +413,8 @@ export class UssdController {
     const { to, text } = body || {};
     const formattedPhone: string = Utility.reformatPhoneNumber(to);
     const eventKey: string = Utility.extractUserPhone(formattedPhone);
-    const sessionKey = `${eventKey}-session-info`;
-    const participantKey = `participant-${eventKey}`;
-    const participantMessageKey = `message-${eventKey}`;
+    const { sessionKey, participantKey, participantMessageKey } =
+      this.service.generateKeys(eventKey);
     const sessionInfo: SessionDataType = await this.getSession(sessionKey);
 
     const payload = {

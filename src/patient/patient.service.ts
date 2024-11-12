@@ -22,35 +22,9 @@ export class PatientService extends TypeOrmCrudService<Patient> {
     });
   }
 
-  getByID(id: string): Promise<Patient> {
-    return this.repository.findOne({
-      where: { id },
-    });
-  }
-
-  async getByPhoneOrCode(identifier: string): Promise<Patient | undefined> {
-    const options: FindOneOptions<Patient> = {
-      where: [{ phoneNumber: identifier }, { code: identifier }],
-    };
-
-    return this.repository.findOne(options);
-  }
-
-  async getPatients({ startDate, endDate, state }) {
-    startDate = startDate ? new Date(startDate) : undefined;
-    endDate = endDate ? new Date(endDate) : undefined;
-
-    if (!startDate) startDate = new Date('2023-01-01');
-    if (!endDate) endDate = new Date();
-
-    state = state === '' ? undefined : state;
-
+  async getPatients() {
     try {
       const participants = await this.repository.find({
-        where: {
-          createdAt: Between(startDate, endDate),
-          state,
-        },
         order: {
           createdAt: 'DESC',
         },
@@ -125,10 +99,6 @@ export class PatientService extends TypeOrmCrudService<Patient> {
     return this.repository.findOne({
       where: { code },
     });
-  }
-
-  updateRecord(participant: Patient, entity: Partial<PatientEntity>) {
-    return this.repository.update(participant.id, entity);
   }
 
   formatPhoneOrNull(rawPhoneNumber: unknown): string | null {
