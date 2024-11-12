@@ -255,4 +255,13 @@ export class UssdService {
     }
     return response;
   }
+
+  generateKeys(eventKey: string) {
+    return {
+      continueKey: `${eventKey}-continue`,
+      sessionKey: `${eventKey}-session-info`,
+      participantKey: `participant-${eventKey}`,
+      participantMessageKey: `message-${eventKey}`,
+    };
+  }
 }

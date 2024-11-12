@@ -51,7 +51,7 @@ export class ArsController implements CrudController<PatientRisks> {
     return this;
   }
 
-  @Post('/stratify-risks')
+  @Post('/stratify')
   async stratifyRisks(
     @Body() responseDto: ValidateDataDto,
   ): Promise<PatientRisks> {

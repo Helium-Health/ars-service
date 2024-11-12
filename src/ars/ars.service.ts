@@ -202,19 +202,6 @@ export class ArsService extends TypeOrmCrudService<PatientRisks> {
 
   getRiskLevelForMultiTypeInput(response) {
     const stratifiedResponse = response.response;
-    const pirfRisk =
-      response.pirfRiskResponse?.length && stratifiedResponse.length
-        ? stratifiedResponse.some((item) =>
-            response.pirfRiskResponse.includes(item),
-          )
-        : false;
-
-    const veryHighRisk =
-      response.veryHighRiskResponse?.length && stratifiedResponse.length
-        ? stratifiedResponse.some((item) =>
-            response.veryHighRiskResponse.includes(item),
-          )
-        : false;
 
     const highRisk =
       response.highRiskResponse?.length && stratifiedResponse.length
@@ -237,7 +224,7 @@ export class ArsService extends TypeOrmCrudService<PatientRisks> {
           )
         : false;
 
-    return { pirfRisk, veryHighRisk, highRisk, mediumRisk, lowRisk };
+    return { highRisk, mediumRisk, lowRisk };
   }
 
   getRiskLevelForDiabetesMultiTypeInput(response) {
@@ -388,53 +375,44 @@ export class ArsService extends TypeOrmCrudService<PatientRisks> {
 
   getOverallRisk(questionToStratify) {
     let stratified = { id: 0, riskValue: 0, questions: [] };
-    let data: any;
 
     try {
-      // if the question has only 1 question, the risk is the final risk
+      // If there's only one question, assign its risk as the final risk value
       if (
         questionToStratify.length === 1 &&
         this.isObject(questionToStratify[0])
       ) {
-        stratified.riskValue =
-          riskGradingValues[questionToStratify[0].risk] || 0;
-        data = {
-          number: questionToStratify[0].number,
-          response: questionToStratify[0].response,
-          riskValue: riskGradingValues[questionToStratify[0].risk],
-        };
-        stratified.questions.push(data);
-      } else {
-        const riskFactors = [];
-        // compute the risk for question with multiple questions
-        questionToStratify.forEach((e) => {
-          if (this.isObject(e)) {
-            riskFactors.push(e.risk);
-            const riskFactorString = riskFactors.toString().trim();
-            const risk = Object.keys(riskGradingRules).includes(
-              riskFactorString,
-            )
-              ? riskGradingRules[riskFactorString]
-              : 'low';
-            stratified.riskValue = riskGradingValues[risk];
-            data = {
-              number: e.number,
-              response: e.response,
-              riskValue: riskGradingValues[e.risk],
-            };
-            stratified.questions.push(data);
-          }
+        const singleQuestion = questionToStratify[0];
+        stratified.riskValue = riskGradingValues[singleQuestion.risk] || 0;
+        stratified.questions.push({
+          number: singleQuestion.number,
+          response: singleQuestion.response,
+          riskValue: stratified.riskValue,
         });
+        return stratified;
       }
 
-      const stratifiedRisk = stratified;
+      // For multiple questions, compute risk based on risk grading rules
+      const riskFactors = questionToStratify.filter(this.isObject).map((e) => {
+        const riskValue = riskGradingValues[e.risk];
+        stratified.questions.push({
+          number: e.number,
+          response: e.response,
+          riskValue,
+        });
+        return e.risk;
+      });
 
-      // offload the object for the next question
-      stratified = { id: 0, riskValue: 0, questions: [] };
+      // Determine the final risk level based on combined risk factors
+      const riskFactorString = riskFactors.join(',').trim();
+      const combinedRisk = riskGradingRules[riskFactorString] || 'low';
+      stratified.riskValue = riskGradingValues[combinedRisk];
 
-      return stratifiedRisk;
+      return stratified;
     } catch (error) {
-      throw Error(error);
+      throw new Error(
+        error.message || 'An error occurred while stratifying risk',
+      );
     }
   }
 
@@ -443,55 +421,63 @@ export class ArsService extends TypeOrmCrudService<PatientRisks> {
   }
 
   getRiskForPairedOptionQuestions(responseObj: any) {
-    let highRisk: boolean;
-    let mediumRisk: boolean;
-    let lowRisk: boolean;
+    let highRisk = false;
+    let mediumRisk = false;
+    let lowRisk = false;
 
     try {
+      // Special condition for question number 19
       if (responseObj.questionNumber === 19) {
-        responseObj.response.includes('Fainting') ||
-        responseObj.response.length >= 3
-          ? (highRisk = true)
-          : !responseObj.response.includes('None') &&
-            responseObj.response.length < 3
-          ? (mediumRisk = true)
-          : (lowRisk = true);
-      } else {
-        const optionPairsForQuestion = optionPairs[responseObj.questionNumber];
-
-        for (let i = 0; i < optionPairsForQuestion.length; i++) {
-          const patientResponse = responseObj.response;
-          const pairedOptions = optionPairsForQuestion[i].split(',');
-
-          const isHighRisk =
-            pairedOptions.every((item) => patientResponse.includes(item)) &&
-            patientResponse.some((item) =>
-              responseObj.highRiskResponse.includes(item),
-            );
-
-          const isMediumRisk =
-            pairedOptions.every((item) => patientResponse.includes(item)) &&
-            patientResponse.some((item) =>
-              responseObj.mediumRiskResponse.includes(item),
-            );
-
-          const isLowRisk =
-            pairedOptions.every((item) => patientResponse.includes(item)) &&
-            patientResponse.some((item) =>
-              responseObj.lowRiskResponse.includes(item),
-            );
-
-          if (isHighRisk || isMediumRisk || isLowRisk) {
-            highRisk = isHighRisk;
-            mediumRisk = isMediumRisk;
-            lowRisk = isLowRisk;
-            break;
-          } else {
-            highRisk = isHighRisk;
-            mediumRisk = true;
-            lowRisk = isLowRisk;
-          }
+        if (
+          responseObj.response.includes('Fainting') ||
+          responseObj.response.length >= 3
+        ) {
+          highRisk = true;
+        } else if (
+          !responseObj.response.includes('None') &&
+          responseObj.response.length < 3
+        ) {
+          mediumRisk = true;
+        } else {
+          lowRisk = true;
         }
+        return { highRisk, mediumRisk, lowRisk };
+      }
+
+      // For other question numbers, check paired options
+      const optionPairsForQuestion = optionPairs[responseObj.questionNumber];
+      const patientResponse = responseObj.response;
+
+      for (const pair of optionPairsForQuestion) {
+        const pairedOptions = pair.split(',');
+
+        // Check if patient response includes all options in the pair
+        const isMatchedPair = pairedOptions.every((item) =>
+          patientResponse.includes(item),
+        );
+        if (!isMatchedPair) continue;
+
+        if (
+          pairedOptions.some((item) =>
+            responseObj.highRiskResponse.includes(item),
+          )
+        ) {
+          highRisk = true;
+        } else if (
+          pairedOptions.some((item) =>
+            responseObj.mediumRiskResponse.includes(item),
+          )
+        ) {
+          mediumRisk = true;
+        } else if (
+          pairedOptions.some((item) =>
+            responseObj.lowRiskResponse.includes(item),
+          )
+        ) {
+          lowRisk = true;
+        }
+
+        if (highRisk || mediumRisk || lowRisk) break;
       }
 
       return { highRisk, mediumRisk, lowRisk };
