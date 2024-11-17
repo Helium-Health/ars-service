@@ -72,7 +72,7 @@ export class ValidateDataDto {
 
   @ApiProperty()
   @IsString()
-  platform: PLATFORM;
+  platform: string;
 }
 
 export class DateParams {

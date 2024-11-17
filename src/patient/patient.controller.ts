@@ -1,23 +1,11 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Inject,
-  Param,
-  Post,
-  Res,
-  Query,
-} from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post, Res } from '@nestjs/common';
 import { Crud, CrudController } from '@nestjsx/crud';
 import { Response } from 'express';
-import * as dayjs from 'dayjs';
+// import * as dayjs from 'dayjs';
 import { ApiTags } from '@nestjs/swagger';
-import { Dictionary } from '../common/types';
-import { Utility } from '../common/utils/utility';
-import { RapidProHookDTO, PatientDto } from './dto';
+import { PatientDto } from './dto';
 import { Patient } from './entities/patient.entity';
 import { PatientService } from './patient.service';
-import { write } from 'fast-csv';
 
 @Crud({
   model: {
@@ -69,7 +57,7 @@ export class PatientController implements CrudController<Patient> {
       const patients = await this.service.getPatients();
       res.status(200).json(patients);
     } catch (error) {
-      throw new Error(error); 
+      throw new Error(error);
     }
   }
 }

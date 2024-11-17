@@ -13,16 +13,16 @@ import {
   PLATFORM,
   riskGradingRules,
   riskGradingValues,
-} from 'src/common/enums';
+} from '../common/enums';
 import {
   recommendations,
   questionRegex,
   optionPairs,
-} from 'src/common/constant';
+} from '../common/constant';
 import { PatientRisks } from './entities/ars.entity';
 import { questions, ussdQuestions } from '../questionnaires';
 import { DataDto } from './dto/validate-date.dto';
-import { Patient } from 'src/patient/entities/patient.entity';
+import { Patient } from '../patient/entities/patient.entity';
 
 @Injectable()
 export class ArsService extends TypeOrmCrudService<PatientRisks> {
@@ -374,7 +374,7 @@ export class ArsService extends TypeOrmCrudService<PatientRisks> {
   }
 
   getOverallRisk(questionToStratify) {
-    let stratified = { id: 0, riskValue: 0, questions: [] };
+    const stratified = { id: 0, riskValue: 0, questions: [] };
 
     try {
       // If there's only one question, assign its risk as the final risk value

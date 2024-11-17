@@ -7,7 +7,7 @@ import {
   messageConstants,
   QID_KEY,
   QUESTION_CACHE,
-} from 'src/common/constant';
+} from '../common/constant';
 import {
   ConfigKey,
   MessagePayload,
