@@ -1,8 +1,7 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
-import { Repository, Between, FindOneOptions } from 'typeorm';
-import { PatientEntity } from '../common/types';
+import { Repository } from 'typeorm';
 import { Utility } from '../common/utils/utility';
 import { Patient } from './entities/patient.entity';
 import { PatientDto } from './dto';

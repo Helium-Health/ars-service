@@ -45,32 +45,12 @@ export class PatientDto {
   @ApiProperty()
   @IsString()
   @IsOptional()
-  ward: string;
-
-  @ApiProperty()
-  @IsString()
-  @IsOptional()
-  classification: string;
-
-  @ApiProperty()
-  @IsString()
-  @IsOptional()
-  preferredLanguage: string;
-
-  @ApiProperty()
-  @IsString()
-  @IsOptional()
   email: string;
 
   @ApiProperty()
   @IsString()
   @IsOptional()
   phoneNumber: string;
-
-  @ApiProperty()
-  @IsString()
-  @IsOptional()
-  interviewer: string;
 }
 
 export class FilterParticipantsDto {

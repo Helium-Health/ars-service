@@ -40,5 +40,5 @@ export class PatientRisks extends BaseModel {
   @Column({
     nullable: false,
   })
-  platform: PLATFORM;
+  platform: string;
 }

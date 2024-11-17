@@ -10,7 +10,6 @@ import {
 import { ArsService } from './ars.service';
 import { PatientRisks } from './entities/ars.entity';
 import { ValidateDataDto } from './dto/validate-date.dto';
-import { PatientService } from 'src/patient/patient.service';
 
 @Crud({
   model: {
@@ -42,10 +41,7 @@ import { PatientService } from 'src/patient/patient.service';
 @Controller('/ars')
 @ApiTags('ars/')
 export class ArsController implements CrudController<PatientRisks> {
-  constructor(
-    public service: ArsService,
-    private readonly patientService: PatientService,
-  ) {}
+  constructor(public service: ArsService) {}
 
   get base(): CrudController<PatientRisks> {
     return this;
@@ -64,11 +60,7 @@ export class ArsController implements CrudController<PatientRisks> {
 
   @Override('getManyBase')
   getMany(@ParsedRequest() req: CrudRequest) {
-    try {
-      return this.base.getManyBase(req);
-    } catch (error) {
-      throw new Error(error);
-    }
+    return this.base.getManyBase(req);
   }
 
   @Get('/results/:id')
