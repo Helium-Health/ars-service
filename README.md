@@ -5,13 +5,13 @@ An open-source implementation of the Antenatal Risk Stratification (ARS) engine 
 ## Author
 
 **Helium Health**  
-Contact: Adeola Victor Banjo - [adeola@heliumhealth.com]
+Contact: [publichealth@heliumhealth.com] for commercial support
 
 ## Overview
 
-The ARS service assesses pregnancy risk exposure levels by analyzing responses to a structured set of stratification questions. This questionnaire, developed by medical professionals, gathers key details about a patient’s health, allowing the system to categorize responses into risk levels. This risk stratification aims to direct women to suitable levels of antenatal care.
+The ARS service assesses pregnancy risk exposure levels by analyzing responses to a structured set of stratification questions. This questionnaire was adapted from the Malaysian ARS model and WHO recommendations for antenatal risk stratification through a comprehensive desk review by medical professionals to fit the Nigerian context. It gathers key details about a patient’s health, allowing the system to categorize responses into risk levels. This risk stratification aims to direct women to suitable levels of antenatal care.
 
-The stratification questionnaire is divided into sections that probe different aspects of health, including:
+The stratification questionnaire is divided into sections that probe different aspects of health, including
 
 - **Biodata**: Captures background information of the respondent.
 - **Obstetric History**: Records previous pregnancies and details related to the current one.
@@ -607,19 +607,5 @@ $ npm run test:cov
 ## USSD Application
 
 The USSD interface of the ARS system enables patients without good access to smart phone and internet to get stratified for their pregnancies via ussd application.
-The USSD application requires Rapid-pro and Redis to be up to work as expected. The Rapid-pro (https://home.rapidpro.io/)
-helps to control the flow and order of the questions in the questionnaire while redis help to manage user sessions while taking the questionnaires so that a single session is maintained from the beginning to end of the questionnaire.
+The USSD application requires Rapid-pro and Redis to be up to work as expected. The Rapid-pro (https://home.rapidpro.io/) helps to control the flow and order of the questions in the questionnaire while redis help to manage user sessions when taking the questionnaires so that a single session is maintained from the beginning to end of the questionnaire.
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
