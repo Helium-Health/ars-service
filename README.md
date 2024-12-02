@@ -439,11 +439,10 @@ The ARS system supports both web and USSD interfaces for seamless access to ante
   
   - **Query Parameters:**
     - `patient_id` (optional): Retrieve results for a specific patient by ID. If omitted, results for all patients will be returned.
-    - `risk_level` (optional): Filter results by risk category (`high`, `medium`, `low`).
 
   #### Sample Request
   ```bash
-  GET /ars?patient_id=12345&risk_level=high
+  GET /ars?patient_id=12345
 
 
 - **Retrieve single stratification Result Endpoint**  
@@ -608,4 +607,63 @@ $ npm run test:cov
 
 The USSD interface of the ARS system enables patients without good access to smart phone and internet to get stratified for their pregnancies via ussd application.
 The USSD application requires Rapid-pro and Redis to be up to work as expected. The Rapid-pro (https://home.rapidpro.io/) helps to control the flow and order of the questions in the questionnaire while redis help to manage user sessions when taking the questionnaires so that a single session is maintained from the beginning to end of the questionnaire.
+
+## Contributions Guide
+
+Thank you for considering contributing to the **Antenatal Risk Stratification (ARS) Service** project! Contributions from the community help improve the quality and impact of this open-source initiative. Whether you're reporting bugs, suggesting features, or submitting code, your input is valued.
+
+---
+
+### **How to Contribute**
+
+#### **1. Reporting Bugs**
+If you encounter a bug, please submit a detailed report to the [Issues](https://github.com/Helium-Health/ars-service/issues) section of the repository. Include the following details:
+- A clear and descriptive title.
+- Steps to reproduce the issue.
+- Expected vs. actual behavior.
+- Any error messages or screenshots (if applicable).
+- Your development environment (e.g., OS, Node.js version).
+
+#### **2. Suggesting Features**
+If you have an idea for a new feature or enhancement, create a **Feature Request** issue. Include:
+- A concise description of the feature.
+- The problem it solves or the value it adds.
+- Any examples or mockups (optional).
+
+#### **3. Submitting Code**
+Contributing code involves forking the repository, making changes, and creating a pull request (PR).
+
+##### **Steps:**
+1. **Fork the Repository**: Click the **Fork** button on the repository page.
+2. **Clone Your Fork**: Clone the forked repository to your local machine:
+   ```bash
+   git clone https://github.com/Helium-Health/ars-service.git
+3. **Create a New Branch**: Create a branch for your changes:
+    ```bash
+    git checkout -b feature/your-feature-name
+4. **Make Changes**: Edit the codebase to address the issue or feature.
+5. **Write Tests**: Add tests to verify your changes. Ensure existing tests pass:
+    ```bash
+    npm run test
+6. **Commit Changes**:
+    ```bash
+    git add .
+    git commit -m "Description of changes"
+7. **Push to Your Fork**:
+    ```bash
+    git push origin feature/your-feature-name
+8. **Submit a Pull Request**: Go to the original repository and create a PR from your fork. Follow the PR template to provide details about your changes.
+
+
+## Community Guidelines
+
+Be respectful and inclusive in your communication.
+Use clear and concise language in issues, comments, and PRs.
+Follow the Contributor Covenant Code of Conduct.
+
+## Acknowledgments
+
+We deeply appreciate your contributions. Together, we can enhance antenatal care and risk assessment for mothers globally. 😊
+
+If you have any questions or need assistance, feel free to contact us at [publichealth@heliumhealth.com].
 
